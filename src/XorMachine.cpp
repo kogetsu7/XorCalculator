@@ -15,7 +15,7 @@ class Machine {
 
         if (!std::all_of(n.begin(), n.end(),
                          [](const char c) -> bool { return c == '0' || c == '1'; })) {
-            exit_with_error("Input is not binary");
+            exitWithError("Input is not binary");
         }
 
         memory.push(std::stoull(n, nullptr, 2));
@@ -25,7 +25,7 @@ class Machine {
 
     void executeXor() noexcept {
         if (int(memory.size()) < 2) {
-            exit_with_error("Stack size is less than 2");
+            exitWithError("Stack size is less than 2");
         }
 
         const auto a = memory.top();
@@ -41,7 +41,7 @@ class Machine {
 
     void executePrint() const noexcept {
         if (memory.empty()) {
-            exit_with_error("Stack is empty");
+            exitWithError("Stack is empty");
         }
 
         std::string s;
@@ -79,7 +79,7 @@ class Machine {
         } else if (inst == "exit") {
             return false;
         } else {
-            exit_with_error("Invalid input");
+            exitWithError("Invalid input");
         }
 
         return true;

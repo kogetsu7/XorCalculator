@@ -21,7 +21,7 @@ class Reader {
             c = std::getchar();
 
             if (c == EOF) {
-                exit_with_error("Syntax error");
+                exitWithError("Syntax error");
             }
         } while (std::isblank(c));
 
@@ -38,7 +38,7 @@ class Reader {
         } else if (c == '\n') {
             symbol = Symbol::LineFeed;
         } else {
-            exit_with_error("Unknown charactor");
+            exitWithError("Unknown charactor");
         }
 
         return;
@@ -75,7 +75,7 @@ class Parser {
             parseE();
 
             if (reader.get() != Symbol::RParen) {
-                exit_with_error("Syntax error");
+                exitWithError("Syntax error");
             }
 
             reader.read();
@@ -104,7 +104,7 @@ class Parser {
         } else if (reader.get() == Symbol::One) {
             result.back() += "1";
         } else {
-            exit_with_error("Syntax error");
+            exitWithError("Syntax error");
         }
 
         reader.read();
@@ -120,7 +120,7 @@ class Parser {
         parseE();
 
         if (reader.get() != Symbol::LineFeed) {
-            exit_with_error("Syntax error");
+            exitWithError("Syntax error");
         }
 
         result.push_back("print");
